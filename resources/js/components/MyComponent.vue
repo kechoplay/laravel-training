@@ -7,6 +7,18 @@
 <!--            <p>{{ sayHello() }}</p>-->
             <p>{{ reverseMessage }}</p>
             <input type="text" v-model="message">
+            <div class="list-rendering">
+                <ul>
+                    <li v-for="(food, index) in foods" v-if="food.id > 1">{{ index }} - {{ food.name }}</li>
+                </ul>
+                <ul>
+<!--                    sử dụng computed thay cho v-if-->
+                    <li v-for="(food, index) in listCompletedFoods">{{ index }} - {{ food.name }}</li>
+                </ul>
+                <ul>
+                    <li v-for="(info, index) in myInfo">{{ index }} - {{ info }}</li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -18,12 +30,25 @@
             return {
                 title: 'Xin chao',
                 // title: this.sayHello()
-                message: ''
+                message: '',
+                foods: [
+                    {id: 1, name: 'Hamburger'},
+                    {id: 2, name: 'Sandwich'},
+                    {id: 3, name: 'Chicken chop'},
+                ],
+                myInfo: {
+                    name: 'Mai Trung Duc',
+                    age: '2x',
+                    country: 'vietnam'
+                }
             }
         },
         computed: {
             reverseMessage() {
                 return this.message.split('').reverse().join('')
+            },
+            listCompletedFoods() {
+                return this.foods.filter(item => item.id > 1)
             }
         },
         watch: {

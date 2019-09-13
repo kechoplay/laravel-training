@@ -82,8 +82,9 @@
 
             <div class="content">
                 <div id="app">
-                    <example-component></example-component>
+{{--                    <example-component></example-component>--}}
                     <my-component></my-component>
+                    <user-dashboard></user-dashboard>
                 </div>
                 <div class="title m-b-md">
                     Laravel
