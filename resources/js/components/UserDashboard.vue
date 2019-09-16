@@ -3,7 +3,8 @@
         This is user dashboard
         <div class="list-user-comp">
             <h4>List User</h4>
-            <ListUser @userSelected="childrenSelectUser"></ListUser>
+<!--            <ListUser @userSelected="childrenSelectUser"></ListUser>-->
+            <ListUser @userSelected="childrenSelectUser('this í tét string', ...arguments)"></ListUser>
         </div>
         <div class="user-detail-comp">
             <h4>User Detail</h4>
@@ -29,8 +30,12 @@
             }
         },
         methods: {
-            childrenSelectUser(user) {
-                console.log(user)
+            // childrenSelectUser(user) {
+            //     console.log(user)
+            //     this.userSelectedFromChild = user
+            // }
+            childrenSelectUser(string, user) {
+                console.log(string);
                 this.userSelectedFromChild = user
             }
         }

@@ -24,7 +24,12 @@
 <script>
     export default {
         name: "UserDetail",
-        props: ['userDetailInfo']
+        // props: ['userDetailInfo']
+        props: {
+            userDetailInfo: {
+                type: Object
+            }
+        }
     }
 </script>
 

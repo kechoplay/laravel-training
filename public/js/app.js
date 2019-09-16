@@ -2042,6 +2042,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2056,8 +2057,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    childrenSelectUser: function childrenSelectUser(user) {
-      console.log(user);
+    // childrenSelectUser(user) {
+    //     console.log(user)
+    //     this.userSelectedFromChild = user
+    // }
+    childrenSelectUser: function childrenSelectUser(string, user) {
+      console.log(string);
       this.userSelectedFromChild = user;
     }
   }
@@ -2099,7 +2104,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UserDetail",
-  props: ['userDetailInfo']
+  // props: ['userDetailInfo']
+  props: {
+    userDetailInfo: {
+      type: Object
+    }
+  }
 });
 
 /***/ }),
@@ -38311,7 +38321,19 @@ var render = function() {
       [
         _c("h4", [_vm._v("List User")]),
         _vm._v(" "),
-        _c("ListUser", { on: { userSelected: _vm.childrenSelectUser } })
+        _c("ListUser", {
+          on: {
+            userSelected: function($event) {
+              var i = arguments.length,
+                argsArray = Array(i)
+              while (i--) argsArray[i] = arguments[i]
+              return _vm.childrenSelectUser.apply(
+                void 0,
+                ["this í tét string"].concat(argsArray)
+              )
+            }
+          }
+        })
       ],
       1
     ),
