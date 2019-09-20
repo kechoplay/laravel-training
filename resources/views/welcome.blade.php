@@ -17,12 +17,12 @@
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
+                /*height: 100vh;*/
                 margin: 0;
             }
 
             .full-height {
-                height: 100vh;
+                /*height: 100vh;*/
             }
 
             .flex-center {
@@ -85,6 +85,9 @@
 {{--                    <example-component></example-component>--}}
                     <my-component></my-component>
                     <user-dashboard></user-dashboard>
+                    <event-handling></event-handling>
+                    <style-component></style-component>
+                    <api-calling></api-calling>
                 </div>
                 <div class="title m-b-md">
                     Laravel
