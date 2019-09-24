@@ -98,6 +98,34 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all(),
+            [
+                'name' => 'required|min:5',
+                'price' => 'required|numeric|min:1',
+            ],
+            [
+                'name.required' => 'Nhap day du ten',
+                'name.min' => 'Ten ngan qua',
+                'price.required' => 'Nhap day du gia',
+                'price.numeric' => 'Nhap so',
+                'price.min' => 'Nhap so > 0'
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response(['success' => false, 'errors' => $validator->errors()], 200);
+        }
+        
+        $product = Product::find($id);
+
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+
+        $product->save();
+
+        return response([
+            'result' => 'success'
+        ], 200);
     }
 
     /**

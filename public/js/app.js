@@ -1979,16 +1979,27 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     updateProduct: function updateProduct(product) {
-      var _this3 = this;
-
       axios.put('/products/' + product.id, {
         name: product.name,
         price: product.price
       }).then(function (response) {
-        console.log(response.data.result);
+        if (!response.data.success) {
+          error.html('');
+
+          if (response.data.errors.name) {
+            error.append("<span>".concat(response.data.errors.name[0], "</span>"));
+          }
+
+          if (response.data.errors.price) {
+            error.append("<span>".concat(response.data.errors.price[0], "</span>"));
+          }
+
+          return;
+        }
+
         product.isEdit = false;
       })["catch"](function (error) {
-        _this3.errors = error.response.data.errors.name;
+        console.log(error);
       });
     }
   }

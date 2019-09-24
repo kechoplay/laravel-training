@@ -139,11 +139,20 @@
             updateProduct(product) {
                 axios.put('/products/' + product.id, {name: product.name, price: product.price})
                     .then(response => {
-                        console.log(response.data.result)
+                        if (!response.data.success) {
+                            error.html('');
+                            if (response.data.errors.name) {
+                                error.append(`<span>${response.data.errors.name[0]}</span>`);
+                            }
+                            if (response.data.errors.price) {
+                                error.append(`<span>${response.data.errors.price[0]}</span>`);
+                            }
+                            return;
+                        }
                         product.isEdit = false
                     })
                     .catch(error => {
-                        this.errors = error.response.data.errors.name
+                        console.log(error);
                     })
             }
         }
