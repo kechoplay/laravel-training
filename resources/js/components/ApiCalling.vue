@@ -51,7 +51,10 @@
                             <input type="text" class="form-control" v-model.number="prod.price">
                         </td>
                         <td>{{ prod.created_at }}</td>
-                        <td v-if="!prod.isEdit"><button class="btn btn-success" @click="prod.isEdit = true">Edit</button></td>
+                        <td v-if="!prod.isEdit">
+                            <button class="btn btn-success" @click="prod.isEdit = true">Edit</button>
+                            <button class="btn btn-danger" @click="deleteProduct(prod, key)">Delete</button>
+                        </td>
                         <td v-else>
                             <button class="btn btn-primary" @click="updateProduct(prod)">Save</button>
                             <button class="btn btn-danger" @click="prod.isEdit = false">Cancel</button>
@@ -82,16 +85,6 @@
             this.getListProducts();
         },
         methods: {
-            formatDate(d) {
-                var dformat = [ d.getFullYear(), (d.getMonth()+1),
-                        d.getDate()
-                    ].join('/')+
-                    ' ' +
-                    [ d.getHours(),
-                        d.getMinutes(),
-                        d.getSeconds()].join(':');
-                return dformat
-            },
             createProduct() {
                 var error = $('.error');
                 axios.post('/products', {
@@ -150,6 +143,15 @@
                             return;
                         }
                         product.isEdit = false
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            },
+            deleteProduct(product, index) {
+                axios.delete('/products/' + product.id)
+                    .then(response => {
+                        this.list_products.splice(index, 1)
                     })
                     .catch(error => {
                         console.log(error);

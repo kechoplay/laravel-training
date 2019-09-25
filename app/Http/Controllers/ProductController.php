@@ -124,7 +124,7 @@ class ProductController extends Controller
         $product->save();
 
         return response([
-            'result' => 'success'
+            'success' => true
         ], 200);
     }
 
@@ -137,5 +137,10 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+        $product = Product::find($id);
+        $product->delete();
+        return response([
+            'success' => true
+        ], 200);
     }
 }

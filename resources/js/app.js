@@ -25,6 +25,7 @@ Vue.component('user-dashboard', require('./components/UserDashboard.vue').defaul
 Vue.component('event-handling', require('./components/EventHandling.vue').default);
 Vue.component('style-component', require('./components/Style.vue').default);
 Vue.component('api-calling', require('./components/ApiCalling.vue').default);
+Vue.component('user', require('./components/User.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
