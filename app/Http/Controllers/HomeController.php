@@ -18,11 +18,12 @@ class HomeController extends Controller
 
     /**
      * Show the application dashboard.
-     *
+     * @param Request $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['employee', 'admin']);
         return view('home');
     }
 }
