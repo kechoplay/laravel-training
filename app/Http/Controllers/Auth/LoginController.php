@@ -17,7 +17,8 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
+    // hàm này dùng trong resource auth : login, check login.
+    // nếu muốn thay thế thì chỉ cần override function trong AuthenticatesUsers
     use AuthenticatesUsers;
 
     /**
@@ -36,4 +37,9 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+//    public function showLoginForm()
+//    {
+//
+//    }
 }

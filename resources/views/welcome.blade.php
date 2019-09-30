@@ -88,6 +88,7 @@
                     <event-handling></event-handling>
                     <style-component></style-component>
                     <api-calling></api-calling>
+                    <user></user>
                 </div>
                 <div class="title m-b-md">
                     Laravel

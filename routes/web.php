@@ -20,3 +20,10 @@ Route::resource('products', 'ProductController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('users', 'UserController');
+
+Route::get('/getCurrentUser', function () {
+    return Auth::user()->with('roles')->first();
+//    return Auth::user()->load('roles');
+});
