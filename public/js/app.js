@@ -2394,7 +2394,23 @@ __webpack_require__.r(__webpack_exports__);
         return check;
       }
     },
-    createUser: function createUser() {}
+    createUser: function createUser() {
+      var _this3 = this;
+
+      axios.post('/users', {
+        user: this.userCreate
+      }).then(function (response) {
+        if (response.data.success) {
+          _this3.getListUser();
+
+          _this3.userCreate = {};
+        } else {
+          console.log(response);
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
   }
 });
 
@@ -7050,7 +7066,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.table[data-v-d884f594] {\n    margin-top: 30px;\n}\n", ""]);
+exports.push([module.i, "\n.create-user[data-v-d884f594] {\n    margin: 30px 0;\n}\n", ""]);
 
 // exports
 
@@ -56874,7 +56890,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "user-management" }, [
-    _vm.checkIsAdmin
+    _vm.checkIsAdmin()
       ? _c("div", { staticClass: "create-user container" }, [
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-3" }, [
@@ -56977,7 +56993,11 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-primary",
-                  on: { click: _vm.createUser }
+                  on: {
+                    click: function($event) {
+                      return _vm.createUser()
+                    }
+                  }
                 },
                 [_vm._v("Create")]
               )

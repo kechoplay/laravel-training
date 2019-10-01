@@ -24,6 +24,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('users', 'UserController');
 
 Route::get('/getCurrentUser', function () {
-    return Auth::user()->with('roles')->first();
+    return \App\User::with('roles')->where('id', Auth::id())->first();
 //    return Auth::user()->load('roles');
 });

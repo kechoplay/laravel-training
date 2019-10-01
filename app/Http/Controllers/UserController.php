@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -38,6 +39,16 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->input('user');
+        $user = new User();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = bcrypt('123456');
+        $user->save();
+
+        $role  = Role::where('name', $data['role'])->first();
+        $user->roles()->attach($role);
+        return response(['success' => true, 'data' => $user]);
     }
 
     /**

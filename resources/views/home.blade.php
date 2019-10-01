@@ -6,6 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
+                <user></user>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -21,3 +22,5 @@
     </div>
 </div>
 @endsection
+
+<script src="{{ asset('js/app.js') }}" defer></script>

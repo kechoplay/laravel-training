@@ -1,6 +1,6 @@
 <template>
     <div class="user-management">
-        <div class="create-user container" v-if="checkIsAdmin">
+        <div class="create-user container" v-if="checkIsAdmin()">
             <div class="row">
                 <div class="col-md-3">
                     <input type="text" v-model="userCreate.name" class="form-control" placeholder="Name...">
@@ -16,7 +16,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <button class="btn btn-primary" @click="createUser">Create</button>
+                    <button class="btn btn-primary" @click="createUser()">Create</button>
                 </div>
             </div>
         </div>
@@ -106,14 +106,25 @@
                 }
             },
             createUser() {
-
+                axios.post('/users', {user: this.userCreate})
+                    .then(response => {
+                        if (response.data.success) {
+                            this.getListUser()
+                            this.userCreate = {};
+                        } else {
+                            console.log(response)
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
             }
         }
     }
 </script>
 
 <style scoped>
-    .table {
-        margin-top: 30px;
+    .create-user {
+        margin: 30px 0;
     }
 </style>

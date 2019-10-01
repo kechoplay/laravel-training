@@ -73,10 +73,8 @@
         </nav>
 
         <main class="py-4">
-            <user></user>
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>
